@@ -61,7 +61,7 @@ const Return = () => {
         </div>
       </div>
       <div className="flex items-center justify-center">
-        <Button className="bg-mainColor hover:bg-mainColor/60">Submit</Button>
+        <Button className="bg-mainColor hover:bg-mainColor/60">Search</Button>
       </div>
     </div>
   );

@@ -1,48 +1,46 @@
-'use client';
+"use client";
 
-import { useState } from "react";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import DatePicker from "../ui/datepicker";
-import { Button } from "../ui/button";
+import { Dispatch, SetStateAction, useState } from "react";
+import OneWay from "./OneWay";
+import Return from "./Return";
+import Multi from "./Multi";
 
 const FlightForm = () => {
 
-    const [date, setDate] = useState<Date>();
+  const [toggleForm,setToggleForm] = useState("oneway");
+
+  const switchToOneWay=()=>{
+    setToggleForm("oneway");
+  }
+
+  const switchToReturn=()=>{
+    setToggleForm("return");
+  }
+
+  const switchToMulti=()=>{
+    setToggleForm("multi");
+  }
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col md:flex-row gap-2 justify-center">
-        <div className="flex flex-col gap-3">
-          <Label htmlFor="flyingFrom" className="font-normal">
-            Flying From
-          </Label>
-          <Input type="text" placeholder="Flying From" id="flyingFrom" className="py-7 px-4 w-full md:w-[20vw]" />
+    <div className="space-y-4 flex flex-col justify-center">
+      <div className="w-full flex justify-center">
+      <div className="w-max flex justify-around text-mainColor border-[1px] border-mainColor rounded-xl overflow-hidden">
+        <div className={`p-4 ${toggleForm === "oneway" ? "bg-mainColor text-white":" text-mainColor "}`}>
+          <button onClick={()=>switchToOneWay()}>One Way</button>
         </div>
-        <div className="flex flex-col gap-3">
-          <Label htmlFor="flyingTo" className="font-normal">
-            Flying To
-          </Label>
-          <Input type="text" placeholder="Flying To" id="flyingTo" className="py-7 px-4 w-full md:w-[20vw]" />
+        <div className={`p-4 ${toggleForm === "return" ? "bg-mainColor text-white":" text-mainColor "}`}>
+          <button onClick={()=>switchToReturn()}>Return</button>
+        </div>
+        <div className={`p-4 ${toggleForm === "multi" ? "bg-mainColor text-white":" text-mainColor "}`}>
+        <button onClick={()=>switchToMulti()}>Multi</button>
         </div>
       </div>
-      <div className="flex flex-col md:flex-row gap-2 justify-center">
-        <div className="flex flex-col gap-3">
-          <Label htmlFor="datePicker" className="font-normal">
-            Pick A Date
-          </Label>
-          <DatePicker date={date} setDate={setDate} />
-        </div>
-        <div className="flex flex-col gap-3">
-          <Label htmlFor="typeAndPerson" className="font-normal">
-            No. Of Person & Type
-          </Label>
-          <Input type="text" placeholder="No. of persons & Type" id="typeAndPerson" className="py-7 px-4 w-full md:w-[20vw]" />
-        </div>
       </div>
-      <div className="flex items-center justify-center">
-        <Button className="bg-mainColor hover:bg-mainColor/60">Submit</Button>
-      </div>
+
+      { toggleForm === "oneway" ? <OneWay/> : "" }
+      { toggleForm === "return" ? <Return/> : "" }
+      { toggleForm === "multi" ? <Multi/> : "" }
+      
     </div>
   );
 };

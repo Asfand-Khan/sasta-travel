@@ -16,7 +16,7 @@ const Form = () => {
 
       {/***************************  Form **********************/}
 
-      <div className="bg-white/90 p-10 rounded-md w-[100vw] md:w-[60vw] shadow-2xl overflow-hidden">
+      <div className="bg-white/90 p-10 rounded-md w-[100vw] md:w-[60vw] shadow-2xl">
         {isActive === "flights" ? <FlightForm /> : <HotelForm />}
       </div>
     </div>
